@@ -1,14 +1,32 @@
 <ion-header>
-  <ion-navbar>
+  <ion-navbar color="cyan">
     <ion-title>
-      Ionic Blank
+      Chat
     </ion-title>
+    <ion-input placeholder="Tu nombre aquí" type="text" [(ngModel)]="userName"></ion-input>
   </ion-navbar>
 </ion-header>
 
-<ion-content padding>
-  The world is your oyster.
-  <p>
-    If you get lost, the <a href="http://ionicframework.com/docs/v2">docs</a> will be your guide.
-  </p>
+<ion-content #content padding>
+  <ion-card *ngFor="let message of messages" color="primary">
+    <ion-card-header>
+      {{message.nombre}}
+    </ion-card-header>
+    <ion-card-content>
+      {{message.mensaje}}
+    </ion-card-content>
+  </ion-card>
+  <div id="content-end"></div>
 </ion-content>
+
+<ion-footer>
+  <ion-toolbar>
+    <ion-input placeholder="Escribe..." [(ngModel)]="message"></ion-input>
+    <ion-buttons end>
+      <button ion-button icon-right (click)="sendMessage()">
+        enviar
+        <ion-icon name="send"></ion-icon>
+      </button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-footer>
